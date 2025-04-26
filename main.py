@@ -12,7 +12,7 @@ import threading
 import smtplib
 import subprocess
 #from opencv.python as cv2
-import opencv as cv2
+import opencv
 import threading
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
