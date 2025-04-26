@@ -8,7 +8,7 @@ import webbrowser
 import openai
 import re
 import threading
-import pyaudio
+#import pyaudio
 import smtplib
 import subprocess
 import cv2
