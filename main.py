@@ -12,7 +12,9 @@ import threading
 import smtplib
 import subprocess
 #from opencv.python as cv2
-import opencv
+#import opencv
+import pygame
+import pygame.camera
 import threading
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -408,33 +410,48 @@ def open_camera():
     def camera_thread():
         global camera_running
         camera_running = True
-        cap = cv2.VideoCapture(0)
 
-        if not cap.isOpened():
-            print("Camera could not be opened.")
+        # Initialize Pygame camera module
+        pygame.camera.init()
+        cameras = pygame.camera.list_cameras()
+
+        if not cameras:
+            print("No cameras found!")
             return
+
+        # Open the first available camera
+        cam = pygame.camera.Camera(cameras[0], (640, 480))
+        cam.start()
+
+        # Create a display surface
+        screen = pygame.display.set_mode((640, 480))
+        pygame.display.set_caption("Camera Preview")
 
         print("Camera opened. Showing preview for 10 seconds...")
         start_time = time.time()
 
-        while camera_running:  # <- Change is here
-            ret, frame = cap.read()
-            if not ret:
-                print("Failed to grab frame.")
-                break
-            cv2.imshow("System Camera", frame)
+        while camera_running:
+            # Capture frame
+            img = cam.get_image()
+            screen.blit(img, (0, 0))
+            pygame.display.flip()
 
+            # Check for exit conditions
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_q):
+                    print("User pressed 'q'.")
+                    camera_running = False
+
+            # Auto-close after 10 seconds
             if time.time() - start_time > 10:
                 print("Closing camera preview.")
                 break
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                print("User pressed 'q'.")
-                break
+        # Cleanup
+        cam.stop()
+        pygame.quit()
 
-        cap.release()
-        cv2.destroyAllWindows()
-
+    # Start the thread
     threading.Thread(target=camera_thread, daemon=True).start()
     say("Opening your camera now.")
 
