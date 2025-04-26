@@ -117,6 +117,7 @@ notebook==7.3.2
 notebook_shim==0.2.4
 numba==0.61.2
 numpy==2.2.1
+openai==1.76.0
 opencv-python==4.11.0.86
 openpyxl==3.1.5
 optree==0.13.1
