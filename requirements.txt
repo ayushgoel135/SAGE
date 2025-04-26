@@ -146,6 +146,7 @@ pydantic==2.10.6
 pydantic_core==2.27.2
 pydeck==0.9.1
 pydub==0.25.1
+pygame==2.6.1
 Pygments==2.19.1
 pymongo==4.11.3
 pyparsing==3.2.1
