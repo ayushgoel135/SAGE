@@ -11,7 +11,7 @@ import threading
 #import pyaudio
 import smtplib
 import subprocess
-from opencv.python import cv2
+import opencv.python
 import threading
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
