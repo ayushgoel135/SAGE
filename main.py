@@ -22,6 +22,7 @@ import platform
 import glob
 from urllib.parse import quote
 import pyautogui
+pyautogui._pyautogui_x11 = None
 searching = True
 listening_for_interrupt = False
 stop_speaking = False
