@@ -90,7 +90,7 @@ button[kind="primary"]:hover {
 st.markdown("<h1 style='text-align: center;'>🤖 SAGE - Your AI DESKTOP Voice Assistant</h1>", unsafe_allow_html=True)
 st.markdown("<div class='typing'>Hello, I'm SAGE. Ready to take your command.</div>", unsafe_allow_html=True)
 st.markdown("---")
-engine = pyttsx3.init(driverName='sapi5')
+engine = pyttsx3.init('voices')
 voices = engine.getProperty('voices')
 
 
