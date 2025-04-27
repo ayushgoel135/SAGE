@@ -30,6 +30,7 @@ import streamlit as st
 import speech_recognition as sr
 import pyttsx3
 import time
+os.environ['DISPLAY'] = ':0' 
 st.set_page_config(page_title="🎙 SAGE Assistant", layout="centered")
 
 # --- CUSTOM CSS ---
